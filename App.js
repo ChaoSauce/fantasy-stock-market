@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,6 +13,7 @@ import TempScreen from './components/temp';
 export default function App() {
   return (
     <FirebaseContext.Provider value={{ firebase, FieldValue }}>
+      <StatusBar />
       <NavigationContainer>
         <Tab.Navigator initialRouteName="Leagues" labeled={false} barStyle={{ backgroundColor: 'teal' }}>
           <Tab.Screen name="Store" component={TempScreen} options={{
