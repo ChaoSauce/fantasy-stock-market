@@ -7,7 +7,12 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function Main() {
   return (
-    <Tab.Navigator initialRouteName="Leagues" labeled={false} barStyle={{ backgroundColor: 'teal' }}>
+    <Tab.Navigator initialRouteName="Feed" labeled={false} barStyle={{ backgroundColor: 'teal' }}>
+      <Tab.Screen name="Feed" component={TempScreen} options={{
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="home" color={color} size={26} />
+        )
+      }} />
       <Tab.Screen name="Store" component={TempScreen} options={{
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="shopping" color={color} size={26} />
@@ -16,12 +21,12 @@ export default function Main() {
       <Tab.Screen name="Leagues" component={TempScreen} options={{
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="finance" color={color} size={26} />
-        )
+          )
       }} />
       <Tab.Screen name="Friends" component={TempScreen} options={{
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="account-group" color={color} size={26} />
-        )
+          )
       }} />
       <Tab.Screen name="Profile" component={TempScreen} options={{
         tabBarIcon: ({ color }) => (
