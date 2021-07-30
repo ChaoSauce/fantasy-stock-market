@@ -3,6 +3,7 @@ import tw from 'tailwind-react-native-classnames';
 import { View, Text, TextInput, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FirebaseContext from '../context/firebase';
+import { doesUsernameExist } from '../services/firebase';
 
 export default function SignUp({ navigation }) {
   const { firebase } = useContext(FirebaseContext);
@@ -11,30 +12,38 @@ export default function SignUp({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const isInvalid = email === '' && password === '' && username === '' && fullName === '';
 
   const handleSignUp = async () => {
-    try {
-      const createdUserResult = await firebase.auth().createUserWithEmailAndPassword(email, password);
-  
-      await firebase.firestore().collection('users').add({
-        userId: createdUserResult.user.uid,
-        username: username,
-        fullName,
-        email: email.toLowerCase(),
-        following: [],
-        followers: [],
-        leagues: [],
-        dateCreated: Date.now()
-      });
-    } catch (error) {
+    const usernameExists = doesUsernameExist(username);
+
+    if (!usernameExists) {
+      try {
+        const createdUserResult = await firebase.auth().createUserWithEmailAndPassword(email, password);
+    
+        await firebase.firestore().collection('users').add({
+          userId: createdUserResult.user.uid,
+          username: username,
+          fullName,
+          email: email.toLowerCase(),
+          following: [],
+          followers: [],
+          leagues: [],
+          dateCreated: Date.now()
+        });
+      } catch (error) {
+        setPassword('');
+        setError(error.message);
+      }
+    } else {
       setPassword('');
-      setError(error.message);
+      setError('That username is already taken, please try another.');
     }
   }
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeAreaView style={tw`container flex-1 justify-center mx-auto max-w-screen-md items-center`}>
+    <SafeAreaView style={tw`container flex-1 justify-center mx-auto max-w-screen-md items-center`}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={tw`flex container w-4/5 items-center justify-center`}>
           <Text
             style={tw`font-bold text-xl mb-5`}
@@ -66,10 +75,11 @@ export default function SignUp({ navigation }) {
             onChangeText={(password) => setPassword(password)}
           />
           <TouchableOpacity
-            style={tw`bg-green-500 p-3 mt-5 font-bold rounded-full w-3/5 items-center justify-center`}
+            disabled={isInvalid}
+            style={tw.style(`bg-green-500 p-3 mt-5 font-bold rounded-full w-3/5 items-center justify-center`, isInvalid && 'opacity-50')}
             onPress={handleSignUp}
           >
-            <Text style={tw`text-white font-bold`}>Log In</Text>
+            <Text style={tw`text-white font-bold`}>Sign Up</Text>
           </TouchableOpacity>
           <View style={tw`flex w-full mt-4 items-center`}>
             <Text>Already have an account? {` `}
@@ -82,7 +92,7 @@ export default function SignUp({ navigation }) {
             </Text>
           </View>
         </View>
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </SafeAreaView>
   )
 }

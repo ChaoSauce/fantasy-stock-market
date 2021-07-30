@@ -9,6 +9,7 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const isInvalid = email === '' && password === '';
 
   const handleLogin = async () => {
     try {
@@ -20,8 +21,8 @@ export default function Login({ navigation }) {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeAreaView style={tw`container flex-1 justify-center mx-auto max-w-screen-md items-center`}>
+    <SafeAreaView style={tw`container flex-1 justify-center mx-auto max-w-screen-md items-center`}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={tw`flex container w-4/5 items-center justify-center`}>
           <Text
             style={tw`font-bold text-xl mb-3`}
@@ -39,7 +40,8 @@ export default function Login({ navigation }) {
             onChangeText={(password) => setPassword(password)}
           />
           <TouchableOpacity
-            style={tw`bg-green-500 p-3 mt-5 font-bold rounded-full w-3/5 items-center justify-center`}
+            disabled={isInvalid}
+            style={tw.style(`bg-green-500 p-3 mt-5 font-bold rounded-full w-3/5 items-center justify-center`, isInvalid && 'opacity-50')}
             onPress={handleLogin}
           >
             <Text style={tw`text-white font-bold`}>Log In</Text>
@@ -55,7 +57,7 @@ export default function Login({ navigation }) {
             </Text>
           </View>
         </View>
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </SafeAreaView>
   )
 }
