@@ -7,7 +7,7 @@ import { firebase, FieldValue } from './lib/firebase';
 import FirebaseContext from './context/firebase';
 import Main from './components/main';
 import Login from './components/login';
-import Temp from './components/temp';
+import SignUp from './components/sign-up';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +21,7 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
-            <Stack.Screen name="SignUp" component={Temp} options={{headerShown: false}} />
+            <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

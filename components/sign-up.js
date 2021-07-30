@@ -3,7 +3,7 @@ import tw from 'tailwind-react-native-classnames';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function Login({ navigation }) {
+export default function SignUp({ navigation }) {
   return (
     <SafeAreaView style={tw`container flex-1 justify-center mx-auto max-w-screen-md items-center h-screen`}>
       <View style={tw`flex container w-4/5 items-center justify-center`}>
@@ -12,6 +12,14 @@ export default function Login({ navigation }) {
         >Fantasy Stock Market</Text>
         <TextInput
           style={tw`p-3 border-2 w-full rounded-sm items-center`}
+          placeholder="Username"
+        />
+        <TextInput
+          style={tw`mt-4 p-3 border-2 w-full rounded-sm items-center`}
+          placeholder="Full name"
+        />
+        <TextInput
+          style={tw`mt-4 p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Email address"
         />
         <TextInput
@@ -25,12 +33,12 @@ export default function Login({ navigation }) {
           <Text style={tw`text-white font-bold`}>Log In</Text>
         </TouchableOpacity>
         <View style={tw`flex w-full mt-4 items-center`}>
-          <Text>Don't have an account? {` `}
+          <Text>Already have an account? {` `}
             <Text
               style={tw`text-blue-700`}
-              onPress={() => navigation.navigate('SignUp')}
+              onPress={() => navigation.navigate('Login')}
             >
-              Sign Up
+              Log In
             </Text>
           </Text>
         </View>
