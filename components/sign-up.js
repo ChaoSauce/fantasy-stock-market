@@ -42,19 +42,23 @@ export default function SignUp({ navigation }) {
         <TextInput
           style={tw`p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Username"
+          onChangeText={(username) => setUsername(username)}
         />
         <TextInput
           style={tw`mt-4 p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Full name"
+          onChangeText={(fullName) => setFullName(fullName)}
         />
         <TextInput
           style={tw`mt-4 p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Email address"
+          onChangeText={(email) => setEmail(email)}
         />
         <TextInput
           style={tw`mt-4 p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Password"
           secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
         />
         <TouchableOpacity
           style={tw`bg-green-500 p-3 mt-5 font-bold rounded-full w-3/5 items-center justify-center`}
