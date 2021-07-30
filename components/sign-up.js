@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import FirebaseContext from '../context/firebase';
 
 export default function SignUp({ navigation }) {
-  const firebase = useContext(FirebaseContext);
+  const { firebase } = useContext(FirebaseContext);
   const [username, setUsername] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -33,7 +33,7 @@ export default function SignUp({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={tw`container flex-1 justify-center mx-auto max-w-screen-md items-center h-screen`}>
+    <SafeAreaView style={tw`container flex-1 justify-center mx-auto max-w-screen-md items-center`}>
       <View style={tw`flex container w-4/5 items-center justify-center`}>
         <Text
           style={tw`font-bold text-xl mb-5`}

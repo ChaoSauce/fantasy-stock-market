@@ -16,15 +16,17 @@ export default function App() {
 
   if (!user) {
     return (
-      <SafeAreaProvider>
-        <StatusBar />
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login">
-            <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
-            <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaProvider>
+      <FirebaseContext.Provider value={{ firebase, FieldValue }}>
+        <SafeAreaProvider>
+          <StatusBar />
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Login">
+              <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
+              <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </FirebaseContext.Provider>
     )
   }
 
