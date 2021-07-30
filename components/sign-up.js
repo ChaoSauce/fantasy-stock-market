@@ -15,7 +15,7 @@ export default function SignUp({ navigation }) {
   const isInvalid = email === '' || password === '' || username === '' || fullName === '';
 
   const handleSignUp = async () => {
-    const usernameExists = doesUsernameExist(username);
+    const usernameExists = await doesUsernameExist(username);
 
     if (!usernameExists) {
       try {
