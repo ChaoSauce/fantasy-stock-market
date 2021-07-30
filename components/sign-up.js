@@ -23,9 +23,9 @@ export default function SignUp({ navigation }) {
     
         await firebase.firestore().collection('users').add({
           userId: createdUserResult.user.uid,
-          username: username,
-          fullName,
-          email: email.toLowerCase(),
+          username: username.trimEnd().toLowerCase(),
+          fullName: fullName.trimEnd(),
+          email: email.trimEnd().toLowerCase(),
           following: [],
           followers: [],
           leagues: [],
@@ -52,22 +52,26 @@ export default function SignUp({ navigation }) {
           style={tw`p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Username"
           onChangeText={(username) => setUsername(username)}
+          value={username}
         />
         <TextInput
           style={tw`mt-4 p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Full name"
           onChangeText={(fullName) => setFullName(fullName)}
+          value={fullName}
         />
         <TextInput
           style={tw`mt-4 p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Email address"
           onChangeText={(email) => setEmail(email)}
+          value={email}
         />
         <TextInput
           style={tw`mt-4 p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Password"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
+          value={password}
         />
         <TouchableOpacity
           disabled={isInvalid}
@@ -76,7 +80,7 @@ export default function SignUp({ navigation }) {
         >
           <Text style={tw`text-white font-bold`}>Sign Up</Text>
         </TouchableOpacity>
-        <View style={tw`flex w-full mt-4 items-center`}>
+        <View style={tw`flex w-full mt-5 items-center`}>
           <Text>Already have an account? {` `}
             <Text
               style={tw`text-blue-700`}

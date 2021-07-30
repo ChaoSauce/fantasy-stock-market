@@ -13,7 +13,7 @@ export default function Login({ navigation }) {
 
   const handleLogin = async () => {
     try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await firebase.auth().signInWithEmailAndPassword(email.trimEnd(), password);
     } catch (error) {
       setPassword('');
       setError(error.message);
@@ -31,12 +31,14 @@ export default function Login({ navigation }) {
           style={tw`p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Email address"
           onChangeText={(email) => setEmail(email)}
+          value={email}
         />
         <TextInput
           style={tw`mt-4 p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Password"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
+          value={password}
         />
         <TouchableOpacity
           disabled={isInvalid}
@@ -45,7 +47,7 @@ export default function Login({ navigation }) {
         >
           <Text style={tw`text-white font-bold`}>Log In</Text>
         </TouchableOpacity>
-        <View style={tw`flex w-full mt-4 items-center`}>
+        <View style={tw`flex w-full mt-5 items-center`}>
           <Text>Don't have an account? {` `}
             <Text
               style={tw`text-blue-700`}
