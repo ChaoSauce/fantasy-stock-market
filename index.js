@@ -25,6 +25,7 @@ export default function Index() {
   }, [user])
 
   if (!loaded) {
+    setLoaded(true);
     return <View style={tw`flex-1 items-center justify-center`}>
       <Text>Loading...</Text>
     </View>
