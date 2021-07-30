@@ -11,11 +11,11 @@ export default function Login() {
           style={tw`font-bold text-xl mb-5`}
         >Fantasy Stock Market</Text>
         <TextInput
-          style={tw`p-2 border-2 w-full rounded-sm text-lg items-center`}
+          style={tw`p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Email address"
         />
         <TextInput
-          style={tw`mt-4 p-2 border-2 w-full rounded-sm text-lg items-center`}
+          style={tw`mt-4 p-3 border-2 w-full rounded-sm items-center`}
           placeholder="Password"
           secureTextEntry={true}
         />
@@ -29,7 +29,7 @@ export default function Login() {
             <Text
               style={tw`text-blue-700`}
             >
-              Log In
+              Sign Up
             </Text>
           </Text>
         </View>
