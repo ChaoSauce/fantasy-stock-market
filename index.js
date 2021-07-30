@@ -15,17 +15,9 @@ import SignUp from './components/sign-up';
 const Stack = createStackNavigator();
 
 export default function Index() {
-  const [loaded, setLoaded] = useState(false);
-  const { user } = userAuthListener();
-
-  useEffect(() => {
-    if (user) {
-      setLoaded(true);
-    }
-  }, [user])
+  const { user, loaded } = userAuthListener();
 
   if (!loaded) {
-    setLoaded(true);
     return <View style={tw`flex-1 items-center justify-center`}>
       <Text>Loading...</Text>
     </View>
@@ -57,5 +49,4 @@ export default function Index() {
       </SafeAreaProvider>
     </LoggedInUserContext.Provider>
   );
-  
 }
