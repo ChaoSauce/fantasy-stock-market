@@ -6,7 +6,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { firebase, FieldValue } from './lib/firebase';
 import FirebaseContext from './context/firebase';
 import Main from './components/main';
-import TempScreen from './components/temp';
+import Login from './components/login';
+import Temp from './components/temp';
 
 const Stack = createStackNavigator();
 
@@ -18,10 +19,9 @@ export default function App() {
       <SafeAreaProvider>
         <StatusBar />
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Landing">
-            <Stack.Screen name="Landing" component={TempScreen} options={{headerShown: false}} />
-            <Stack.Screen name="Login" component={TempScreen} options={{headerShown: false}} />
-            <Stack.Screen name="SignUp" component={TempScreen} options={{headerShown: false}} />
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
+            <Stack.Screen name="SignUp" component={Temp} options={{headerShown: false}} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
