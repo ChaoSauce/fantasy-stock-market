@@ -32,13 +32,13 @@ export default function Profile() {
 
       <View style={tw`flex-row justify-between m-5 w-11/12 border-b pb-3 px-6`}>
         <View style={tw`flex items-center justify-center`}>
-          <Text>{currentUser?.posts.length} posts</Text>
+          <Text>{currentUser?.posts.length || 0} posts</Text>
         </View>
         <View style={tw`flex items-center justify-center`}>
-          <Text>{currentUser?.followers.length} followers</Text>
+          <Text>{currentUser?.followers.length || 0} followers</Text>
         </View>
         <View style={tw`flex items-center justify-center`}>
-          <Text>{currentUser?.following.length} following</Text>
+          <Text>{currentUser?.following.length || 0} following</Text>
         </View>
       </View>
       
