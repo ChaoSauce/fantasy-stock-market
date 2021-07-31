@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import TempScreen from './temp';
+import Profile from './main/profile';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -9,7 +10,7 @@ export default function Main() {
   const [tabColor, setTabColor] = useState('rgba(16, 185, 129, 1)');
 
   return (
-    <Tab.Navigator initialRouteName="Feed" labeled={true} >
+    <Tab.Navigator initialRouteName="Profile" labeled={true} >
       <Tab.Screen name="Feed" component={TempScreen} options={{
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="home" color={color} size={26} inactiveColor="white" />
@@ -34,7 +35,7 @@ export default function Main() {
         ),
         tabBarColor: tabColor
       }} />
-      <Tab.Screen name="Profile" component={TempScreen} options={{
+      <Tab.Screen name="Profile" component={Profile} options={{
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="account" color={color} size={26} />
         ),
