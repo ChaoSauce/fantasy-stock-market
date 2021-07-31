@@ -43,7 +43,7 @@ export default function Profile() {
       </View>
       
       <TouchableOpacity
-        style={tw`bg-red-600 p-2 w-2/5 rounded-full items-center justify-center`}
+        style={tw`bg-red-700 p-2 w-2/5 rounded-full items-center justify-center`}
         onPress={() => firebase.auth().signOut()}
       >
         <Text style={tw`text-white font-bold text-base`}>Log Out</Text>

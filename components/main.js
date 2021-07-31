@@ -29,9 +29,9 @@ export default function Main() {
         ),
         tabBarColor: tabColor
       }} />
-      <Tab.Screen name="Friends" component={TempScreen} options={{
+      <Tab.Screen name="Messages" component={TempScreen} options={{
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="account-group" color={color} size={26} />
+          <MaterialCommunityIcons name="comment-text-multiple" color={color} size={26} />
         ),
         tabBarColor: tabColor
       }} />
