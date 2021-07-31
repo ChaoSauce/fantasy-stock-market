@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FirebaseContext from '../../context/firebase';
@@ -22,10 +22,26 @@ export default function Profile() {
   
 
   return (
-    <SafeAreaView style={tw`container flex-1 justify-center mx-auto max-w-screen-sm items-center`}>
-      <View style={tw`border-b-2 mb-5 w-3/5 pb-1 items-center`}>
-        <Text>{currentUser?.fullName}</Text>
+    <SafeAreaView style={tw`container flex-1 my-5 mx-auto max-w-screen-sm items-center`}>
+      <View style={tw`flex items-center p-2 border rounded-full`}>
+          <Image
+            style={tw`h-20 w-20`}
+            source={{uri: 'https://img.icons8.com/windows/96/000000/gender-neutral-user.png'}}
+          />
+        </View>
+
+      <View style={tw`flex-row justify-between m-5 w-11/12 border-b pb-3 px-6`}>
+        <View style={tw`flex items-center justify-center`}>
+          <Text>{currentUser?.posts.length} posts</Text>
+        </View>
+        <View style={tw`flex items-center justify-center`}>
+          <Text>{currentUser?.followers.length} followers</Text>
+        </View>
+        <View style={tw`flex items-center justify-center`}>
+          <Text>{currentUser?.following.length} following</Text>
+        </View>
       </View>
+      
       <TouchableOpacity
         style={tw`bg-red-600 p-2 w-2/5 rounded-full items-center justify-center`}
         onPress={() => firebase.auth().signOut()}

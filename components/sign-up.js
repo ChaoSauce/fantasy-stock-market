@@ -20,7 +20,10 @@ export default function SignUp({ navigation }) {
     if (!usernameExists) {
       try {
         const createdUserResult = await firebase.auth().createUserWithEmailAndPassword(email, password);
-    
+        await createdUserResult.user.updateProfile({
+          displayName: username.trimEnd().toLowerCase()
+        });
+
         await firebase.firestore().collection('users').add({
           userId: createdUserResult.user.uid,
           username: username.trimEnd().toLowerCase(),
@@ -28,6 +31,7 @@ export default function SignUp({ navigation }) {
           email: email.trimEnd().toLowerCase(),
           following: [],
           followers: [],
+          posts: [],
           leagues: [],
           dateCreated: Date.now()
         });
