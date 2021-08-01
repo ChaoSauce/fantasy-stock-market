@@ -80,7 +80,7 @@ export default function SignUp({ navigation }) {
           />
           <TouchableOpacity
             disabled={isInvalid}
-            style={tw.style(`bg-green-500 p-3 mt-5 font-bold rounded-full w-2/5 items-center justify-center`, isInvalid && 'opacity-50')}
+            style={tw.style(`bg-red-500 p-3 mt-5 font-bold rounded-full w-2/5 items-center justify-center`, isInvalid && 'opacity-50')}
             onPress={handleSignUp}
           >
             <Text style={tw`text-white font-bold`}>Sign Up</Text>

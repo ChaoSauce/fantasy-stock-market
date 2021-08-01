@@ -7,7 +7,7 @@ import Profile from './main/profile';
 const Tab = createMaterialBottomTabNavigator();
 
 export default function Main() {
-  const [tabColor, setTabColor] = useState('rgba(16, 185, 129, 1)');
+  const [tabColor, setTabColor] = useState('darkturquoise');
 
   return (
     <Tab.Navigator initialRouteName="Profile" labeled={true} >
