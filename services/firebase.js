@@ -22,3 +22,16 @@ export async function getUserByUserId(userId) {
     docId: item.id
   }));
 }
+
+export async function getOpenLeagues() {
+  const result = await firebase
+    .firestore()
+    .collection('leagues')
+    .where('numPlayers', '!=', 'maxNumPlayers')
+    .get();
+
+  return result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id
+  }));
+}
