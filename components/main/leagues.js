@@ -30,7 +30,7 @@ export default function Leagues() {
         </View>
       </View>
 
-      <View style={tw`flex-1 w-full mt-1`}>
+      <View style={tw`flex-1 w-full mt-2`}>
         <FlatList
         scroll
           numColumns={1}
