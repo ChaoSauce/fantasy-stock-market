@@ -132,7 +132,7 @@ export default function Profile() {
   ];
 
   return (
-    <SafeAreaView style={tw`container flex-1 mt-5 mx-auto max-w-screen-sm items-center`}>
+    <SafeAreaView style={tw`container flex-1 mt-5 mx-auto max-w-screen-sm items-center bg-gray-100`}>
       <View style={tw`flex items-center mb-2`}>
         <Text style={tw`text-2xl font-bold`}>{currentUser?.fullName}</Text>
       </View>
