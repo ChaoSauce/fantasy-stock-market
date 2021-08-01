@@ -14,7 +14,7 @@ export default function Main() {
     <Tab.Navigator initialRouteName="Leagues" labeled={true} >
       <Tab.Screen name="Feed" component={TempScreen} options={{
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="home" color={color} size={26} inactiveColor="white" />
+          <MaterialCommunityIcons name="home" color={color} size={26} />
         ),
         tabBarColor: tabColor
       }} />
