@@ -35,3 +35,16 @@ export async function getOpenLeagues() {
     docId: item.id
   }));
 }
+
+export async function getPosts(userId) {
+  const result = await firebase
+    .firestore()
+    .collection('posts')
+    .where('userId', '==', userId)
+    .get();
+
+  return result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id
+  }));
+}

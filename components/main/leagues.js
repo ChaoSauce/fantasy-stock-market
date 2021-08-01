@@ -21,7 +21,7 @@ export default function Leagues() {
   return (
     <SafeAreaView style={tw`flex-1 container max-w-screen-sm mx-auto bg-gray-100`}>
       <View style={tw`flex-row justify-end mt-4 py-1 px-6 w-full`}>
-        <View style={tw`flex-row border border-gray-400 px-10 py-1 rounded shadow-md`}>
+        <View style={tw`flex-row border border-gray-400 px-10 py-1 rounded shadow`}>
           <Image
             style={tw`h-6 w-6`}
             source={{uri: 'https://img.icons8.com/color/48/000000/topaz.png'}}
@@ -32,12 +32,11 @@ export default function Leagues() {
 
       <View style={tw`flex-1 w-full mt-2`}>
         <FlatList
-        scroll
           numColumns={1}
           horizontal={false}
           data={leagues}
           renderItem={({item}) => (
-            <View style={tw`border border-gray-400 py-3 px-3 my-2 mx-6 rounded bg-gray-100 shadow-md`}>
+            <View style={tw`border border-gray-400 py-3 px-3 my-2 mx-6 rounded bg-gray-100 shadow`}>
               <View style={tw`flex-row w-full px-2 pb-2 border-b border-gray-300 mb-4 justify-center`}>
                 <View style={tw`items-center mr-2`}>
                   <Image
