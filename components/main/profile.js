@@ -148,14 +148,14 @@ export default function Profile() {
         <Text style={tw`text-base mt-2`}>@{currentUser?.username}</Text>
         <View style={tw`flex-row justify-between m-3`}>
           <TouchableOpacity
-            style={tw`flex bg-red-500 py-1 px-3 mr-4 items-center justify-center`}
+            style={tw`flex bg-red-500 py-1 px-5 mr-4 items-center justify-center rounded`}
           >
-            <Text style={tw`font-bold text-white text-base`}>Follow</Text>
+            <Text style={tw`font-bold text-white text-sm`}>Follow</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={tw`flex bg-red-500 py-1 px-3 items-center justify-center`}
+            style={tw`flex bg-gray-100 border py-1 px-5 items-center justify-center rounded`}
           >
-            <Text style={tw`font-bold text-white text-base`}>Message</Text>
+            <Text style={tw`font-bold text-sm`}>Message</Text>
           </TouchableOpacity>
         </View>
       </View>
