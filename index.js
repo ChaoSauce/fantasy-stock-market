@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -37,6 +38,7 @@ export default function Index() {
   return (
     <LoggedInUserContext.Provider value={{ user }}>
       <SafeAreaProvider>
+        <StatusBar />
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Main">
             <Stack.Screen name="Main" component={Main} options={{headerShown: false}} />
