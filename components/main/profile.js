@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import FirebaseContext from '../../context/firebase';
 import LoggedInUserContext from '../../context/logged-in-user';
 import { getUserByUserId, getPosts } from '../../services/firebase';
-import { formatDistanceToNow } from 'date-fns';
+import Posts from './posts';
 
 export default function Profile() {
   const { firebase } = useContext(FirebaseContext);
@@ -77,33 +77,7 @@ export default function Profile() {
           <Text>this is a test bio taking up space</Text>
         </View>
       )}
-      
-      <View style={tw`flex-1 w-full pt-1`}>
-        <FlatList
-          numColumns={1}
-          horizontal={false}
-          data={posts}
-          renderItem={({item}) => (
-            <View style={tw`flex justify-center p-1 mx-2 my-1 rounded border border-gray-400 shadow`}>
-              <View style={tw`flex-row`}>
-                <Text style={tw`text-base font-bold leading-4`}>{item.fullName} </Text>
-                <Text style={tw`text-base text-gray-700 leading-4`}>@{item.username} </Text>
-              </View>
-              <View style={tw`flex`}>
-                <Text style={tw`text-xs leading-4`}>{formatDistanceToNow(item.timeStamp.toDate())} ago</Text>
-              </View>
-              <View style={tw`flex mt-1 pb-1 border-b border-gray-300`}>
-                <Text>{item.text}</Text>
-              </View>
-              <View style={tw`flex-row`}>
-                <Text style={tw`mr-4`}>Like</Text>
-                <Text>Comment</Text>
-              </View>
-            </View>
-          )}
-          keyExtractor={item => item.docId}
-        />
-      </View>
+      <Posts posts={posts} />
     </SafeAreaView>
   )
 }
