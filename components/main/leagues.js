@@ -32,8 +32,8 @@ export default function Leagues() {
 
   return (
     <SafeAreaView edges={['top', 'left', 'right']} style={tw`flex-1 container max-w-screen-sm mx-auto bg-gray-100`}>
-      <View style={tw`flex-row justify-end mt-4 py-1 px-6 w-full`}>
-        <View style={tw`flex-row border border-gray-400 px-4 py-1 rounded shadow`}>
+      <View style={tw`flex-row justify-end mt-3 py-1 px-6 w-full`}>
+        <View style={tw`flex-row border border-gray-400 px-4 py-1 rounded`}>
           <Image
             style={tw`h-6 w-6`}
             source={{uri: 'https://img.icons8.com/color/48/000000/topaz.png'}}
@@ -41,14 +41,16 @@ export default function Leagues() {
           <Text style={tw`text-base`}>{currentUser?.gem}</Text>
         </View>
       </View>
-
-      <View style={tw`flex-1 w-full mt-2`}>
+      <View style={tw`flex m-2 justify-center items-center`}>
+        <Text style={tw`text-xl`}>My Leagues</Text>
+      </View>
+      <View style={tw`flex-1 w-full`}>
         <FlatList
           numColumns={1}
           horizontal={false}
           data={leagues}
           renderItem={({item}) => (
-            <View style={tw`border border-gray-400 py-3 px-3 my-2 mx-6 rounded bg-gray-100 shadow`}>
+            <View style={tw`border border-gray-400 mb-2 py-3 px-3 mx-6 rounded bg-gray-100 shadow`}>
               <View style={tw`flex-row w-full px-2 pb-2 border-b border-gray-300 mb-4 justify-center`}>
                 <View style={tw`items-center mr-2`}>
                   <Image
