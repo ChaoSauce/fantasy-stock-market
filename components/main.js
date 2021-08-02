@@ -3,7 +3,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import TempScreen from './temp';
 import Profile from './main/profile';
-import Leagues from './main/leagues';
+import MyLeagues from './main/my-leagues';
 import Feed from './main/feed';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -12,7 +12,7 @@ export default function Main() {
   const [tabColor, setTabColor] = useState('darkturquoise');
 
   return (
-    <Tab.Navigator initialRouteName="Leagues" labeled={true}>
+    <Tab.Navigator initialRouteName="MyLeagues" labeled={true}>
       <Tab.Screen name="Feed" component={Feed} options={{
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="home" color={color} size={26} />
@@ -25,7 +25,7 @@ export default function Main() {
         ),
         tabBarColor: tabColor
       }} />
-      <Tab.Screen name="Leagues" component={Leagues} options={{
+      <Tab.Screen name="MyLeagues" component={MyLeagues} options={{
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="finance" color={color} size={26} />
         ),

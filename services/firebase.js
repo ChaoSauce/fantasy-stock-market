@@ -23,11 +23,10 @@ export async function getUserByUserId(userId) {
   }));
 }
 
-export async function getOpenLeagues() {
-  const result = await firebase
+export async function getLeagues() {
+  let result = result = await firebase
     .firestore()
     .collection('leagues')
-    .where('numPlayers', '!=', 'maxNumPlayers')
     .get();
 
   return result.docs.map((item) => ({

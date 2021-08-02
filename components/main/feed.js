@@ -59,7 +59,7 @@ export default function Feed() {
         <View style={tw`flex-1 container justify-center w-full items-center`}>
           <View style={tw`flex-row justify-start w-full`}>
             <TextInput
-              style={tw`flex p-2 w-4/5 border border-gray-300`}
+              style={tw`flex p-2 w-4/5 border border-gray-500`}
               multiline
               placeholder="What's on your mind?"
               onChangeText={(text) => setStatus(text)}
@@ -67,7 +67,7 @@ export default function Feed() {
             />
             <TouchableOpacity
               disabled={isInvalid}
-              style={tw.style(`flex w-1/5 justify-center bg-red-500`, isInvalid && 'opacity-50')}
+              style={tw.style(`flex w-1/5 justify-center bg-blue-500`, isInvalid && 'opacity-50')}
               onPress={handleSubmit}
             >
               <Text style={tw`text-lg text-white text-center`}>Post</Text>
