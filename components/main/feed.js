@@ -57,7 +57,7 @@ export default function Feed() {
       </View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={tw`flex-1 container justify-center w-full items-center`}>
-          <View style={tw`flex-row justify-start w-full mb-1`}>
+          <View style={tw`flex-row justify-start w-full`}>
             <TextInput
               style={tw`flex p-2 w-4/5 border border-gray-300`}
               multiline
