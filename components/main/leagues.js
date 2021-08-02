@@ -1,32 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, Image, FlatList } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
-import { getOpenLeagues } from '../../services/firebase';
+import { getOpenLeagues, getUserByUserId } from '../../services/firebase';
 import { formatDistance, format } from 'date-fns';
+import LoggedInUserContext from '../../context/logged-in-user';
 
 export default function Leagues() {
+  const { user } = useContext(LoggedInUserContext);
   const [leagues, setLeagues] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
   
   useEffect(() => {
+    async function getCurrentUserInfo() {
+      const [result] = await getUserByUserId(user.uid);
+      setCurrentUser(result);
+    }
+
     async function getAvailableLeagues() {
       const result = await getOpenLeagues();
 
       setLeagues(result);
     }
 
+    if (user) {
+      getCurrentUserInfo();
+    }
+
     getAvailableLeagues();
-  }, [])
+  }, [user])
 
   return (
     <SafeAreaView style={tw`flex-1 container max-w-screen-sm mx-auto bg-gray-100`}>
       <View style={tw`flex-row justify-end mt-4 py-1 px-6 w-full`}>
-        <View style={tw`flex-row border border-gray-400 px-10 py-1 rounded shadow`}>
+        <View style={tw`flex-row border border-gray-400 px-4 py-1 rounded shadow`}>
           <Image
             style={tw`h-6 w-6`}
             source={{uri: 'https://img.icons8.com/color/48/000000/topaz.png'}}
           />
-          <Text style={tw`text-base`}>5</Text>
+          <Text style={tw`text-base`}>{currentUser?.gem}</Text>
         </View>
       </View>
 

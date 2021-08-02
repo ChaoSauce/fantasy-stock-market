@@ -11,13 +11,14 @@ import FirebaseContext from '../../context/firebase';
 export default function Feed() {
   const [status, setStatus] = useState('');
   const [posts, setPosts] = useState([]);
+  const [postsCount, setPostsCount] = useState(0);
   const { user } = useContext(LoggedInUserContext);
   const { firebase } = useContext(FirebaseContext);
   const [currentUser, setCurrentUser] = useState(null);
   const isInvalid = status === '';
 
   useEffect(() => {
-    async function getCurrentUser() {
+    async function getCurrentUserInfo() {
       const [result] = await getUserByUserId(user.uid);
       setCurrentUser(result);
     }
@@ -25,18 +26,17 @@ export default function Feed() {
     async function getUserPosts() {
       const results = await getPosts(user.uid);
       setPosts(results.sort((a, b) => b.timeStamp.toDate() - a.timeStamp.toDate()));
+      setPostsCount(results.length);
     };
     
     if (user) {
       getUserPosts();
-      console.log("here");
     }
 
     if (!currentUser) {
-      getCurrentUser();
-      console.log("here");
+      getCurrentUserInfo();
     }
-  }, [user]);
+  }, [user, postsCount]);
 
   const handleSubmit = async () => {
     await firebase.firestore().collection('posts').add({
@@ -48,6 +48,7 @@ export default function Feed() {
     });
 
     setStatus('');
+    setPostsCount((count) => count + 1);
   }
   
   return (
@@ -67,7 +68,7 @@ export default function Feed() {
             />
             <TouchableOpacity
               disabled={isInvalid}
-              style={tw.style(`flex w-1/5 justify-center bg-blue-900`, isInvalid && 'opacity-50')}
+              style={tw.style(`flex w-1/5 justify-center bg-red-500`, isInvalid && 'opacity-50')}
               onPress={handleSubmit}
             >
               <Text style={tw`text-lg text-white text-center`}>Post</Text>
