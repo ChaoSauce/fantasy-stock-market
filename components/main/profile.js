@@ -60,7 +60,7 @@ export default function Profile() {
         </View>
       </View>
 
-      <View style={tw`flex-row justify-between w-full border-b border-gray-300 px-10 pb-3`}>
+      <View style={tw`flex-row justify-between w-full border-b border-gray-300 px-10 pt-1 pb-4`}>
         <View style={tw`flex items-center justify-center`}>
           <Text>{currentUser?.posts.length || 0} posts</Text>
         </View>
