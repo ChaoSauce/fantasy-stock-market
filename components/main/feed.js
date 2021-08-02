@@ -3,9 +3,8 @@ import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyb
 import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'tailwind-react-native-classnames';
 import LoggedInUserContext from '../../context/logged-in-user';
-import { getPosts } from '../../services/firebase';
-import { formatDistanceToNow, set } from 'date-fns';
-import { getUserByUserId } from '../../services/firebase';
+import { getPosts, getUserByUserId } from '../../services/firebase';
+import { formatDistanceToNow } from 'date-fns';
 import FirebaseContext from '../../context/firebase';
 
 export default function Feed() {
@@ -52,13 +51,13 @@ export default function Feed() {
   }
   
   return (
-    <SafeAreaView style={tw`flex-1 container max-w-screen-sm mx-auto bg-gray-100`}>
+    <SafeAreaView edges={['top', 'left', 'right']} style={tw`flex-1 container max-w-screen-sm mx-auto bg-gray-100`}>
       <View style={tw`flex justify-start px-2 py-1 bg-gray-100`}>
         <Text style={tw`text-2xl`}>Fantasy Stock</Text>
       </View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={tw`flex-1 container justify-center w-full items-center`}>
-          <View style={tw`flex-row justify-start w-full mb-2`}>
+          <View style={tw`flex-row justify-start w-full mb-1`}>
             <TextInput
               style={tw`flex p-2 w-4/5 border border-gray-300`}
               multiline

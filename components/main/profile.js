@@ -4,12 +4,14 @@ import tw from 'tailwind-react-native-classnames';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FirebaseContext from '../../context/firebase';
 import LoggedInUserContext from '../../context/logged-in-user';
-import { getUserByUserId } from '../../services/firebase';
+import { getUserByUserId, getPosts } from '../../services/firebase';
+import { formatDistanceToNow } from 'date-fns';
 
 export default function Profile() {
   const { firebase } = useContext(FirebaseContext);
   const { user } = useContext(LoggedInUserContext);
   const [currentUser, setCurrentUser] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -17,122 +19,20 @@ export default function Profile() {
       setCurrentUser(result);
     }
 
+    async function getUserPosts() {
+      const results = await getPosts(user.uid);
+      setPosts(results.sort((a, b) => b.timeStamp.toDate() - a.timeStamp.toDate()));
+    };
+
     getCurrentUser();
+
+    if (user) {
+      getUserPosts();
+    }
   }, [user])
-  
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba1',
-      title: 'First Post',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f632',
-      title: 'Second Post',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d723',
-      title: 'Third Post',
-    },
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba4',
-      title: 'First Post',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f635',
-      title: 'Second Post',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d726',
-      title: 'Third Post',
-    },
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba7',
-      title: 'First Post',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f638',
-      title: 'Second Post',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d729',
-      title: 'Third Post',
-    },
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba0',
-      title: 'First Post',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f6311',
-      title: 'Second Post',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d7212',
-      title: 'Third Post',
-    },
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba13',
-      title: 'First Post',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f6314',
-      title: 'Second Post',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d7215',
-      title: 'Third Post',
-    },
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba016',
-      title: 'First Post',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f631117',
-      title: 'Second Post',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72121',
-      title: 'Third Post',
-    },
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba132',
-      title: 'First Post',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63143',
-      title: 'Second Post',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72154',
-      title: 'Third Post',
-    },
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba05',
-      title: 'First Post',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63116',
-      title: 'Second Post',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72127',
-      title: 'Third Post',
-    },
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba138',
-      title: 'First Post',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63149',
-      title: 'Second Post',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d721510',
-      title: 'Third Post',
-    },
-  ];
 
   return (
-    <SafeAreaView style={tw`container flex-1 mt-5 mx-auto max-w-screen-sm items-center bg-gray-100`}>
+    <SafeAreaView edges={['top', 'left', 'right']} style={tw`container flex-1 mt-5 mx-auto max-w-screen-sm items-center bg-gray-100`}>
       <View style={tw`flex items-center mb-2`}>
         <Text style={tw`text-2xl font-bold`}>{currentUser?.fullName}</Text>
       </View>
@@ -178,25 +78,32 @@ export default function Profile() {
         </View>
       )}
       
-      <View style={tw`flex-1 my-4 w-full`}>
+      <View style={tw`flex-1 w-full pt-1`}>
         <FlatList
           numColumns={1}
           horizontal={false}
-          data={DATA}
+          data={posts}
           renderItem={({item}) => (
-            <View>
-              <Text style={tw`text-center`}>{item.title}</Text>
+            <View style={tw`flex justify-center p-1 mx-2 my-1 rounded border border-gray-400 shadow`}>
+              <View style={tw`flex-row`}>
+                <Text style={tw`text-base font-bold leading-4`}>{item.fullName} </Text>
+                <Text style={tw`text-base text-gray-700 leading-4`}>@{item.username} </Text>
+              </View>
+              <View style={tw`flex`}>
+                <Text style={tw`text-xs leading-4`}>{formatDistanceToNow(item.timeStamp.toDate())} ago</Text>
+              </View>
+              <View style={tw`flex mt-1 pb-1 border-b border-gray-300`}>
+                <Text>{item.text}</Text>
+              </View>
+              <View style={tw`flex-row`}>
+                <Text style={tw`mr-4`}>Like</Text>
+                <Text>Comment</Text>
+              </View>
             </View>
           )}
+          keyExtractor={item => item.docId}
         />
       </View>
-
-      <TouchableOpacity
-        style={tw`bg-red-500 p-2 mb-2 w-2/5 rounded-full items-center justify-center`}
-        onPress={() => firebase.auth().signOut()}
-      >
-        <Text style={tw`text-white font-bold text-base`}>Log Out</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   )
 }
