@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { View, Text, TextInput, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FirebaseContext from '../context/firebase';
-import { doesUsernameExist } from '../services/firebase';
+import FirebaseContext from '../../context/firebase';
+import { doesUsernameExist } from '../../services/firebase';
 
 export default function SignUp({ navigation }) {
   const { firebase } = useContext(FirebaseContext);

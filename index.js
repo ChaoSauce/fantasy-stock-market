@@ -8,9 +8,10 @@ import userAuthListener from './hooks/user-auth-listener';
 import LoggedInUserContext from './context/logged-in-user';
 import tw from 'tailwind-react-native-classnames';
 import Main from './components/main';
-import Login from './components/login';
-import SignUp from './components/sign-up';
+import Login from './components/auth/login';
+import SignUp from './components/auth/sign-up';
 import JoinLeague from './components/join-league';
+import LookUpUser from './components/main/feed/look-up-user';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,7 @@ export default function Index() {
           <Stack.Navigator initialRouteName="Main">
             <Stack.Screen name="Main" component={Main} options={{headerShown: false}} />
             <Stack.Screen name="JoinLeague" component={JoinLeague} options={{headerShown: false}} />
+            <Stack.Screen name="LookUpUser" component={LookUpUser} options={{headerShown: false}} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
