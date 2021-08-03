@@ -3,9 +3,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
-import { getLeagues, getUserByUserId } from '../services/firebase';
-import ListLeagues from './main/list-leagues';
-import LoggedInUserContext from '../context/logged-in-user';
+import { getLeagues, getUserByUserId } from '../../services/firebase';
+import ListLeagues from './list-leagues';
+import LoggedInUserContext from '../../context/logged-in-user';
 
 export default function OpenLeagues({ navigation }) {
   const { user } = useContext(LoggedInUserContext);
@@ -32,10 +32,10 @@ export default function OpenLeagues({ navigation }) {
   }, [user]);
 
   return (
-    <SafeAreaView style={tw`flex-1 container max-w-screen-sm mx-auto bg-gray-100`}>
+    <SafeAreaView style={tw`flex-1 container max-w-screen-xl mx-auto bg-gray-100`}>
       <View style={tw`flex-row justify-between mt-3 py-1 px-6 w-full`}>
         <TouchableOpacity
-          style={tw`flex justify-center items-center`}
+          style={tw`flex justify-center items-center pr-10`}
           onPress={() => navigation.goBack()}
         >
           <Image

@@ -12,16 +12,24 @@ export default function Posts({ posts }) {
         data={posts}
         renderItem={({item}) => (
           <View style={tw`flex justify-center border-t-4 border-gray-400`} onStartShouldSetResponder={() => true}>
-            <View style={tw`pt-2 pl-2`}>
-              <View style={tw`flex-row`}>
-                <Text style={tw`text-base font-bold leading-4`}>{item.fullName} </Text>
-                <Text style={tw`text-base text-gray-700 leading-4`}>@{item.username} </Text>
+            <View style={tw`flex-row items-center pt-2 pl-2`}>
+              <View style={tw`flex items-center p-2 mr-2 border rounded-full`}>
+                <Image
+                  style={tw`h-4 w-4`}
+                  source={{uri: 'https://img.icons8.com/windows/96/000000/gender-neutral-user.png'}}
+                />
               </View>
-              <View style={tw`flex`}>
-                <Text style={tw`text-xs leading-4`}>{formatDistanceToNow(item.timeStamp.toDate())} ago</Text>
+              <View style={tw`flex-col justify-center`}>
+                <View style={tw`flex-row items-center`}>
+                  <Text style={tw`text-base font-bold leading-4`}>{item.fullName} </Text>
+                  <Text style={tw`text-base text-gray-700 leading-4`}>@{item.username} </Text>
+                </View>
+                <View style={tw`flex`}>
+                  <Text style={tw`text-xs leading-4`}>{formatDistanceToNow(item.timeStamp.toDate())} ago</Text>
+                </View>
               </View>
             </View>
-            <View style={tw`flex p-2 border-b border-gray-300`}>
+            <View style={tw`flex px-2 py-3 border-b border-gray-300`}>
               <Text>{item.text}</Text>
             </View>
             <View style={tw`flex-row items-center p-2`}>

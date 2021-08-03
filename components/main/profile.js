@@ -32,8 +32,8 @@ export default function Profile() {
   }, [user])
 
   return (
-    <SafeAreaView edges={['top', 'left', 'right']} style={tw`container flex-1 mt-5 mx-auto max-w-screen-sm items-center bg-gray-100`}>
-      <View style={tw`flex items-center mb-2`}>
+    <SafeAreaView edges={['top', 'left', 'right']} style={tw`container flex-1 mx-auto max-w-screen-xl items-center bg-gray-100 border border-gray-300`}>
+      <View style={tw`flex items-center mb-2 mt-5`}>
         <Text style={tw`text-2xl font-bold`}>{currentUser?.fullName}</Text>
       </View>
 
@@ -60,11 +60,11 @@ export default function Profile() {
         </View>
       </View>
 
-      <View style={tw`flex-row justify-between w-full border-b border-gray-300 px-10 pt-1 pb-4`}>
+      <View style={tw`flex-row justify-center w-full border-b border-gray-300 px-10 pt-1 pb-4`}>
         <View style={tw`flex items-center justify-center`}>
           <Text>{currentUser?.posts.length || 0} posts</Text>
         </View>
-        <View style={tw`flex items-center justify-center`}>
+        <View style={tw`flex items-center justify-center mx-4`}>
           <Text>{currentUser?.followers.length || 0} followers</Text>
         </View>
         <View style={tw`flex items-center justify-center`}>

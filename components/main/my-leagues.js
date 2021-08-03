@@ -31,7 +31,7 @@ export default function MyLeagues({ navigation }) {
   }, [user]);
 
   return (
-    <SafeAreaView edges={['top', 'left', 'right']} style={tw`flex-1 container max-w-screen-sm mx-auto bg-gray-100`}>
+    <SafeAreaView edges={['top', 'left', 'right']} style={tw`flex-1 container max-w-screen-xl mx-auto bg-gray-100 border border-gray-300`}>
       <View style={tw`flex-row justify-between mt-3 py-1 px-6 w-full`}>
         <TouchableOpacity
           style={tw`flex justify-center items-center bg-blue-500 px-3 py-1 rounded`}

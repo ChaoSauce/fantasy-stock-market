@@ -11,7 +11,7 @@ export default function ListLeagues({ leagues }) {
         horizontal={false}
         data={leagues}
         renderItem={({item}) => (
-          <View style={tw`border border-gray-400 mb-2 py-3 px-3 mx-6 rounded bg-gray-100 shadow`}>
+          <View style={tw`border border-gray-400 mb-4 py-3 px-3 mx-6 rounded bg-gray-100 shadow`}>
             <View style={tw`flex-row w-full px-2 pb-2 border-b border-gray-300 mb-4 justify-center`}>
               <View style={tw`items-center mr-2`}>
                 <Image

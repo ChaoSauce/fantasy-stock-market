@@ -10,7 +10,7 @@ import tw from 'tailwind-react-native-classnames';
 import Main from './components/main';
 import Login from './components/login';
 import SignUp from './components/sign-up';
-import OpenLeagues from './components/open-leagues';
+import OpenLeagues from './components/main/open-leagues';
 
 const Stack = createStackNavigator();
 

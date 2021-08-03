@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import TempScreen from './temp';
 import Profile from './main/profile';
@@ -13,7 +12,7 @@ export default function Main() {
   const [tabColor, setTabColor] = useState('white');
 
   return (
-    <Tab.Navigator initialRouteName="Leagues" labeled={true} activeColor='black' inactiveColor='black' barStyle={{borderTopWidth: 1, borderTopColor: 'gray'}}>
+    <Tab.Navigator initialRouteName="Feed" labeled={true} activeColor='black' inactiveColor='black' barStyle={{borderTopWidth: 1, borderTopColor: 'gray'}}>
       <Tab.Screen name="Feed" component={Feed} options={{
         tabBarIcon: () => (
           <Ionicons name="reader-outline" size={24} />

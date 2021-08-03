@@ -51,7 +51,7 @@ export default function Feed() {
   }
   
   return (
-    <SafeAreaView edges={['top', 'left', 'right']} style={tw`flex-1 container max-w-screen-sm mx-auto bg-gray-100`}>
+    <SafeAreaView edges={['top', 'left', 'right']} style={tw`flex-1 container max-w-screen-xl mx-auto bg-gray-100 border border-gray-300`}>
       <View style={tw`flex justify-start px-2 py-1 bg-gray-100`}>
         <Text style={tw`text-2xl`}>Fantasy Stock</Text>
       </View>
@@ -59,7 +59,7 @@ export default function Feed() {
         <View style={tw`flex-1 container justify-center w-full items-center`}>
           <View style={tw`flex-row justify-start w-full`}>
             <TextInput
-              style={tw`flex p-2 w-4/5 border border-gray-500`}
+              style={tw`flex p-2 w-4/5 border-t border-b border-gray-300`}
               multiline
               placeholder="What's on your mind?"
               onChangeText={(text) => setStatus(text)}
