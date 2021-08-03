@@ -11,7 +11,6 @@ import Main from './components/main';
 import Login from './components/login';
 import SignUp from './components/sign-up';
 import JoinLeague from './components/join-league';
-import Join from './components/join-league/join';
 
 const Stack = createStackNavigator();
 
@@ -42,7 +41,7 @@ export default function Index() {
       <SafeAreaProvider>
         <StatusBar />
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="JoinLeague">
+          <Stack.Navigator initialRouteName="Main">
             <Stack.Screen name="Main" component={Main} options={{headerShown: false}} />
             <Stack.Screen name="JoinLeague" component={JoinLeague} options={{headerShown: false}} />
           </Stack.Navigator>

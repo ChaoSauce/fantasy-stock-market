@@ -25,7 +25,7 @@ export default function Posts({ posts }) {
                   <Text style={tw`text-base text-gray-700 leading-4`}>@{item.username} </Text>
                 </View>
                 <View style={tw`flex`}>
-                  <Text style={tw`text-xs leading-4`}>{formatDistanceToNow(item.timeStamp.toDate())} ago</Text>
+                  <Text style={tw`text-xs leading-4`}>{formatDistanceToNow(item.timeStamp)} ago</Text>
                 </View>
               </View>
             </View>

@@ -5,11 +5,13 @@ import tw from 'tailwind-react-native-classnames';
 import { getLeagues, getUserByUserId } from '../../services/firebase';
 import ListLeagues from '../join-league/list';
 import LoggedInUserContext from '../../context/logged-in-user';
+import JoinLeague from '../join-league';
 
 export default function Leagues({ navigation }) {
   const { user } = useContext(LoggedInUserContext);
   const [leagues, setLeagues] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [filteredUserLeagues, setFilteredUserLeagues] = useState([]);
   
   useEffect(() => {
     async function getCurrentUserInfo() {
@@ -20,7 +22,8 @@ export default function Leagues({ navigation }) {
     async function fetchLeagues() {
       const result = await getLeagues();
 
-      setLeagues(result.filter((league) => league.players.includes(user.uid)));
+      setLeagues(result);
+      setFilteredUserLeagues(result.filter((league) => league.players.includes(user.uid)));
     }
 
     if (user) {
@@ -36,7 +39,7 @@ export default function Leagues({ navigation }) {
         <View style={tw`flex justify-center items-center`}>
           <TouchableOpacity
             style={tw`flex justify-center items-center bg-blue-500 px-2 py-1 rounded`}
-            onPress={() => navigation.navigate('OpenLeagues', { currentUser: currentUser })}
+            onPress={() => navigation.navigate('JoinLeague', { currentUser: currentUser, navigation: navigation, leagues: leagues })}
           >
             <Text style={tw`text-white text-base`}>Join League</Text>
           </TouchableOpacity>
@@ -49,8 +52,8 @@ export default function Leagues({ navigation }) {
           <Text style={tw`text-base`}>{currentUser?.gem}</Text>
         </View>
       </View>
-      {leagues.length > 0 ? (
-        <ListLeagues leagues={leagues} />
+      {filteredUserLeagues.length > 0 ? (
+        <ListLeagues leagues={filteredUserLeagues} />
       ) : (
         <View style={tw`flex justify-center items-center p-2`}>
           <Text style={tw`text-base`}>You are not in any leagues.</Text>

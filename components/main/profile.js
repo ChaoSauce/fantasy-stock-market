@@ -21,7 +21,7 @@ export default function Profile() {
 
     async function getUserPosts() {
       const results = await getPosts(user.uid);
-      setPosts(results.sort((a, b) => b.timeStamp.toDate() - a.timeStamp.toDate()));
+      setPosts(results.sort((a, b) => b.timeStamp - a.timeStamp));
     };
 
     getCurrentUser();

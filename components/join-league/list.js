@@ -19,7 +19,7 @@ export default function List({ leagues }) {
                   source={{uri: 'https://img.icons8.com/office/480/000000/clock--v1.png'}}
                 />
               </View>
-              <Text style={tw`text-center text-sm`}>{format(item.draftTime.toDate(), 'iii, MMM do @ h:mm a')}</Text>
+              <Text style={tw`text-center text-sm`}>{format(item.draftTime, 'iii, MMM do @ h:mm a')}</Text>
             </View>
             <View style={tw`flex w-full px-8`}>
               <View style={tw`flex-row justify-between mb-2`}>
@@ -65,7 +65,7 @@ export default function List({ leagues }) {
                 </View>
               </View>
             </View>
-            <Text style={tw`text-base text-blue-500 text-center`}>Draft starts {formatDistance(item.draftTime.toDate(), new Date(), { addSuffix: true, includeSeconds: true })}</Text>
+            <Text style={tw`text-base text-blue-500 text-center`}>Draft starts {formatDistance(item.draftTime, new Date(), { addSuffix: true, includeSeconds: true })}</Text>
           </View>
         )}
         keyExtractor={item => item.docId}
