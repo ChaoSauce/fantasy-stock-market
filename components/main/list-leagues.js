@@ -37,7 +37,7 @@ export default function ListLeagues({ leagues }) {
                     <View style={tw`items-center mr-2`}>
                       <Image
                         style={tw`h-5 w-5`}
-                        source={{uri: 'https://img.icons8.com/color/480/000000/topaz.png'}}
+                        source={{uri: 'https://img.icons8.com/office/80/000000/us-dollar--v1.png'}}
                       />
                     </View>
                     <Text style={tw`text-center text-sm`}>{item.gemPerPlayer}</Text>

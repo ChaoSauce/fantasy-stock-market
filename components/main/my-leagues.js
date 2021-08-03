@@ -37,12 +37,12 @@ export default function MyLeagues({ navigation }) {
           style={tw`flex justify-center items-center bg-blue-500 px-3 py-1 rounded`}
           onPress={() => navigation.navigate('OpenLeagues')}
         >
-          <Text style={tw`text-white text-base`}>Available Leagues</Text>
+          <Text style={tw`text-white text-base`}>Join Leagues</Text>
         </TouchableOpacity>
         <View style={tw`flex-row border border-gray-400 px-3 py-1 rounded`}>
           <Image
-            style={tw`h-6 w-6`}
-            source={{uri: 'https://img.icons8.com/color/48/000000/topaz.png'}}
+            style={tw`h-6 w-6 mr-1`}
+            source={{uri: 'https://img.icons8.com/office/80/000000/us-dollar--v1.png'}}
           />
           <Text style={tw`text-base`}>{currentUser?.gem}</Text>
         </View>

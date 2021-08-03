@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import TempScreen from './temp';
 import Profile from './main/profile';
 import MyLeagues from './main/my-leagues';
@@ -9,37 +10,37 @@ import Feed from './main/feed';
 const Tab = createMaterialBottomTabNavigator();
 
 export default function Main() {
-  const [tabColor, setTabColor] = useState('darkturquoise');
+  const [tabColor, setTabColor] = useState('white');
 
   return (
-    <Tab.Navigator initialRouteName="Leagues" labeled={true}>
+    <Tab.Navigator initialRouteName="Leagues" labeled={true} activeColor='black' inactiveColor='black' barStyle={{borderTopWidth: 1, borderTopColor: 'gray'}}>
       <Tab.Screen name="Feed" component={Feed} options={{
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="home" color={color} size={26} />
+        tabBarIcon: () => (
+          <Ionicons name="reader-outline" size={24} />
         ),
         tabBarColor: tabColor
       }} />
       <Tab.Screen name="Store" component={TempScreen} options={{
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="shopping" color={color} size={26} />
+        tabBarIcon: () => (
+          <Ionicons name="wallet-outline" size={24} />
         ),
         tabBarColor: tabColor
       }} />
-      <Tab.Screen name="Leauges" component={MyLeagues} options={{
+      <Tab.Screen name="Leagues" component={MyLeagues} options={{
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="finance" color={color} size={26} />
+          <Ionicons name="trending-up-outline" size={24} />
         ),
         tabBarColor: tabColor
       }} />
       <Tab.Screen name="Messages" component={TempScreen} options={{
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="comment-text-multiple" color={color} size={26} />
+          <Ionicons name="chatbubble-outline" size={24} />
         ),
         tabBarColor: tabColor
       }} />
       <Tab.Screen name="Profile" component={Profile} options={{
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="account" color={color} size={26} />
+          <Ionicons name="person-outline" size={24} />
         ),
         tabBarColor: tabColor
       }} />

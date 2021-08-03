@@ -7,7 +7,7 @@ import { getLeagues, getUserByUserId } from '../services/firebase';
 import ListLeagues from './main/list-leagues';
 import LoggedInUserContext from '../context/logged-in-user';
 
-export default function OpenLeagues() {
+export default function OpenLeagues({ navigation }) {
   const { user } = useContext(LoggedInUserContext);
   const [leagues, setLeagues] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
@@ -33,17 +33,26 @@ export default function OpenLeagues() {
 
   return (
     <SafeAreaView style={tw`flex-1 container max-w-screen-sm mx-auto bg-gray-100`}>
-      <View style={tw`flex-row justify-end mt-3 py-1 px-6 w-full`}>
+      <View style={tw`flex-row justify-between mt-3 py-1 px-6 w-full`}>
+        <TouchableOpacity
+          style={tw`flex justify-center items-center`}
+          onPress={() => navigation.goBack()}
+        >
+          <Image
+            source={{uri: 'https://img.icons8.com/ios-glyphs/90/000000/back.png'}}
+            style={tw`h-6 w-6`}
+          />
+        </TouchableOpacity>
         <View style={tw`flex-row border border-gray-400 px-3 py-1 rounded`}>
           <Image
-            style={tw`h-6 w-6`}
-            source={{uri: 'https://img.icons8.com/color/48/000000/topaz.png'}}
+            style={tw`h-6 w-6 mr-1`}
+            source={{uri: 'https://img.icons8.com/office/80/000000/us-dollar--v1.png'}}
           />
           <Text style={tw`text-base`}>{currentUser?.gem}</Text>
         </View>
       </View>
       <View style={tw`flex m-2 justify-center items-center`}>
-        <Text style={tw`text-xl`}>Open Leagues</Text>
+        <Text style={tw`text-xl`}>Leagues</Text>
       </View>
       <ListLeagues leagues={leagues} />
     </SafeAreaView>
