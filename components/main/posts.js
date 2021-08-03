@@ -12,7 +12,7 @@ export default function Posts({ posts }) {
         data={posts}
         renderItem={({item}) => (
           <View style={tw`flex justify-center border-t-4 border-gray-400`} onStartShouldSetResponder={() => true}>
-            <View style={tw`pt-2 pl-2 border-b border-gray-300 pb-1`}>
+            <View style={tw`pt-2 pl-2`}>
               <View style={tw`flex-row`}>
                 <Text style={tw`text-base font-bold leading-4`}>{item.fullName} </Text>
                 <Text style={tw`text-base text-gray-700 leading-4`}>@{item.username} </Text>

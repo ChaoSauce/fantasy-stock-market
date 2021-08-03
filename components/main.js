@@ -28,7 +28,7 @@ export default function Main() {
       }} />
       <Tab.Screen name="Leagues" component={MyLeagues} options={{
         tabBarIcon: ({ color }) => (
-          <Ionicons name="trending-up-outline" size={24} />
+          <Ionicons name="rocket-outline" size={24} />
         ),
         tabBarColor: tabColor
       }} />
