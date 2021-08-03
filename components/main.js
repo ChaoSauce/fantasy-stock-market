@@ -12,7 +12,7 @@ export default function Main() {
   const [tabColor, setTabColor] = useState('darkturquoise');
 
   return (
-    <Tab.Navigator initialRouteName="MyLeagues" labeled={true}>
+    <Tab.Navigator initialRouteName="Leagues" labeled={true}>
       <Tab.Screen name="Feed" component={Feed} options={{
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="home" color={color} size={26} />
@@ -25,7 +25,7 @@ export default function Main() {
         ),
         tabBarColor: tabColor
       }} />
-      <Tab.Screen name="MyLeagues" component={MyLeagues} options={{
+      <Tab.Screen name="Leauges" component={MyLeagues} options={{
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="finance" color={color} size={26} />
         ),
