@@ -1,35 +1,22 @@
-
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
-import { getLeagues, getUserByUserId } from '../../services/firebase';
-import ListLeagues from './list-leagues';
-import LoggedInUserContext from '../../context/logged-in-user';
+import { getLeagues } from '../../services/firebase';
+import List from './list';
 
-export default function OpenLeagues({ navigation }) {
-  const { user } = useContext(LoggedInUserContext);
+export default function Join({ currentUser, navigation }) {
   const [leagues, setLeagues] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    async function getCurrentUserInfo() {
-      const [result] = await getUserByUserId(user.uid);
-      setCurrentUser(result);
-    }
-
     async function fetchLeagues() {
       const result = await getLeagues();
 
-      setLeagues(result.filter((league) => league.players.includes(user.uid)));
-    }
-
-    if (user) {
-      getCurrentUserInfo();
+      setLeagues(result.filter((league) => !league.players.includes(currentUser.userId)));
     }
 
     fetchLeagues();
-  }, [user]);
+  }, [currentUser]);
 
   return (
     <SafeAreaView style={tw`flex-1 container max-w-screen-xl mx-auto bg-gray-100`}>
@@ -51,10 +38,13 @@ export default function OpenLeagues({ navigation }) {
           <Text style={tw`text-base`}>{currentUser?.gem}</Text>
         </View>
       </View>
-      <View style={tw`flex m-2 justify-center items-center`}>
-        <Text style={tw`text-xl`}>Leagues</Text>
-      </View>
-      <ListLeagues leagues={leagues} />
+      {leagues.length > 0 ? (
+        <ListLeagues leagues={leagues} />
+      ) : (
+        <View style={tw`flex justify-center items-center p-2`}>
+          <Text style={tw`text-base`}>No Available Leagues</Text>
+        </View>
+      )}
     </SafeAreaView>
   )
 }

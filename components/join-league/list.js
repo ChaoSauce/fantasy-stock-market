@@ -3,7 +3,7 @@ import { View, Text, Image, FlatList } from 'react-native';
 import { formatDistance, format } from 'date-fns';
 import tw from 'tailwind-react-native-classnames';
 
-export default function ListLeagues({ leagues }) {
+export default function List({ leagues }) {
   return (
     <View style={tw`flex-1 w-full`}>
       <FlatList

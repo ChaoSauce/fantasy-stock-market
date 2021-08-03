@@ -10,7 +10,8 @@ import tw from 'tailwind-react-native-classnames';
 import Main from './components/main';
 import Login from './components/login';
 import SignUp from './components/sign-up';
-import OpenLeagues from './components/main/open-leagues';
+import JoinLeague from './components/join-league';
+import Join from './components/join-league/join';
 
 const Stack = createStackNavigator();
 
@@ -41,9 +42,9 @@ export default function Index() {
       <SafeAreaProvider>
         <StatusBar />
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Main">
+          <Stack.Navigator initialRouteName="JoinLeague">
             <Stack.Screen name="Main" component={Main} options={{headerShown: false}} />
-            <Stack.Screen name="OpenLeagues" component={OpenLeagues} options={{headerShown: false}} />
+            <Stack.Screen name="JoinLeague" component={JoinLeague} options={{headerShown: false}} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

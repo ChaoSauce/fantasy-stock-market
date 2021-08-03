@@ -3,12 +3,11 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import TempScreen from './temp';
 import Profile from './main/profile';
-import MyLeagues from './main/my-leagues';
+import Leagues from './main/leagues';
 import Feed from './main/feed';
 
-const Tab = createMaterialBottomTabNavigator();
-
 export default function Main() {
+  const Tab = createMaterialBottomTabNavigator();
   const [tabColor, setTabColor] = useState('white');
 
   return (
@@ -25,20 +24,20 @@ export default function Main() {
         ),
         tabBarColor: tabColor
       }} />
-      <Tab.Screen name="Leagues" component={MyLeagues} options={{
-        tabBarIcon: ({ color }) => (
+      <Tab.Screen name="Leagues" component={Leagues} options={{
+        tabBarIcon: () => (
           <Ionicons name="rocket-outline" size={24} />
         ),
         tabBarColor: tabColor
       }} />
       <Tab.Screen name="Messages" component={TempScreen} options={{
-        tabBarIcon: ({ color }) => (
+        tabBarIcon: () => (
           <Ionicons name="chatbubble-outline" size={24} />
         ),
         tabBarColor: tabColor
       }} />
       <Tab.Screen name="Profile" component={Profile} options={{
-        tabBarIcon: ({ color }) => (
+        tabBarIcon: () => (
           <Ionicons name="person-outline" size={24} />
         ),
         tabBarColor: tabColor
