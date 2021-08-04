@@ -59,8 +59,8 @@ export default function Feed({ navigation }) {
               <Text style={tw`text-2xl`}>Fantasy Stock</Text>
             </View>
             <TouchableOpacity
-              style={tw`flex justify-center items-center px-4`}
-              onPress={() => navigation.navigate('LookUpUser')}
+              style={tw`flex justify-center items-center px-3`}
+              onPress={() => navigation.navigate('LookUpUser', { navigation: navigation })}
             >
               <Image
                 style={tw`h-7 w-7`}
@@ -76,6 +76,7 @@ export default function Feed({ navigation }) {
                 placeholder="What's on your mind?"
                 onChangeText={(text) => setStatus(text)}
                 value={status}
+                returnKeyType='send'
               />
               <TouchableOpacity
                 disabled={isInvalid}

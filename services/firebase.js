@@ -47,3 +47,17 @@ export async function getPosts(userId) {
     docId: item.id
   }));
 }
+
+export async function getUsersBySearchText(startcode, endcode) {
+  const result = await firebase
+    .firestore()
+    .collection('users')
+    .where('fullName', '>=', startcode)
+    .where('fullName', '<', endcode)
+    .get();
+
+    return result.docs.map((item) => ({
+      ...item.data(),
+      docId: item.id
+    }));
+}
