@@ -30,7 +30,7 @@ export default function LookUpUser({ navigation }) {
     };
 
     if (searchText != '') {
-      fetchUsersBySearch(startcode, endcode);
+      fetchUsersBySearch();
     } else {
       setUsers([]);
     }
