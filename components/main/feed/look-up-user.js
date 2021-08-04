@@ -43,7 +43,7 @@ export default function LookUpUser({ navigation }) {
           <View style={tw`flex-row justify-start items-center my-3 py-1 pl-2 w-full`}>
             <TouchableOpacity
               style={tw`flex justify-center items-center`}
-              onPress={() => navigation.goBack()}
+              onPress={() => navigation.navigate('Main')}
             >
               <Image
                 source={{uri: 'https://img.icons8.com/ios-glyphs/90/000000/back.png'}}
