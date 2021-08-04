@@ -3,15 +3,14 @@ import { View, Text, TouchableOpacity, Image, Alert, Platform, StatusBar } from 
 import tw from 'tailwind-react-native-classnames';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import LoggedInUserContext from '../../context/logged-in-user';
-import { getUserByUserId, getPosts, uploadProfileImage } from '../../services/firebase';
-import Posts from './posts';
+import { getUserByUserId, getUserPosts, uploadProfileImage } from '../../services/firebase';
+import Posts from './feed/posts';
 import * as ImagePicker from 'expo-image-picker';
 
 export default function Profile() {
   const { user } = useContext(LoggedInUserContext);
   const [currentUser, setCurrentUser] = useState(null);
   const [posts, setPosts] = useState([]);
-  const [image, setImage] = useState(null);
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -19,15 +18,15 @@ export default function Profile() {
       setCurrentUser(result);
     }
 
-    async function getUserPosts() {
-      const results = await getPosts(user.uid);
+    async function fetchUserPosts() {
+      const results = await getUserPosts(user.uid);
       setPosts(results.sort((a, b) => b.timeStamp - a.timeStamp));
     };
 
     getCurrentUser();
 
     if (user) {
-      getUserPosts();
+      fetchUserPosts();
     }
   }, [user])
 

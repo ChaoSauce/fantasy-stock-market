@@ -3,9 +3,9 @@ import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyb
 import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'tailwind-react-native-classnames';
 import LoggedInUserContext from '../../../context/logged-in-user';
-import { getPosts, getUserByUserId } from '../../../services/firebase';
+import { getFollowingPosts, getUserByUserId } from '../../../services/firebase';
 import FirebaseContext from '../../../context/firebase';
-import Posts from '../posts';
+import Posts from './posts';
 
 export default function Feed({ navigation }) {
   const [status, setStatus] = useState('');
@@ -23,27 +23,23 @@ export default function Feed({ navigation }) {
     }
     
     async function getUserPosts() {
-      const results = await getPosts(user.uid);
+      const results = await getFollowingPosts([...currentUser.following, currentUser.userId]);
       setPosts(results.sort((a, b) => b.timeStamp - a.timeStamp));
       setPostsCount(results.length);
     };
     
-    if (user) {
-      getUserPosts();
-    }
-
     if (!currentUser) {
       getCurrentUserInfo();
+    } else {
+      getUserPosts();
     }
-  }, [user, postsCount]);
+  }, [currentUser, postsCount]);
 
   const handleSubmit = async () => {
     await firebase.firestore().collection('posts').add({
-      fullName: currentUser.fullName,
       text: status,
-      timeStamp: new Date(),
+      timeStamp: (new Date()).getTime(),
       userId: user.uid,
-      username: currentUser.username
     });
 
     setStatus('');
@@ -69,7 +65,7 @@ export default function Feed({ navigation }) {
             </TouchableOpacity>
           </View>
           <View style={tw`flex-1 container justify-center w-full items-center`}>
-            <View style={tw`flex-row justify-start w-full`}>
+            <View style={tw`flex-row justify-start w-full border-b-4 border-gray-400`}>
               <TextInput
                 style={tw`flex p-2 w-4/5 border-t border-b border-gray-300`}
                 multiline

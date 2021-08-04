@@ -35,11 +35,24 @@ export async function getLeagues() {
   }));
 }
 
-export async function getPosts(userId) {
+export async function getUserPosts(userId) {
   const result = await firebase
     .firestore()
     .collection('posts')
     .where('userId', '==', userId)
+    .get();
+
+  return result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id
+  }));
+}
+
+export async function getFollowingPosts(following) {
+  const result = await firebase
+    .firestore()
+    .collection('posts')
+    .where('userId', 'in', following)
     .get();
 
   return result.docs.map((item) => ({
