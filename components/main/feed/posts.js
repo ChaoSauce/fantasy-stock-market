@@ -3,6 +3,7 @@ import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import { formatDistanceToNow } from 'date-fns';
 import tw from 'tailwind-react-native-classnames';
 import { getUserByUserId } from '../../../services/firebase';
+import Actions from './actions';
 
 export default function Posts({ posts }) {
   const [updatedPosts, setUpdatedPosts] = useState([...posts]);
@@ -69,25 +70,10 @@ export default function Posts({ posts }) {
                 </View>
               </View>
             </View>
-            <View style={tw`flex pl-16 pr-2 pb-2 pt-1 border-b border-gray-300`}>
+            <View style={tw`flex pl-16 pr-2 pb-3 pt-1`}>
               <Text>{item.text}</Text>
             </View>
-            <View style={tw`flex-row items-center p-2`}>
-              <TouchableOpacity style={tw`flex-row items-center`} onPress={() => alert('Like')}>
-                <Image
-                  source={{uri: 'https://img.icons8.com/material-outlined/96/000000/facebook-like--v1.png'}}
-                  style={tw`h-4 w-4`}
-                />
-                <Text style={tw`mr-3`}> Like</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={tw`flex-row items-center`} onPress={() => alert('Like')}>
-                <Image
-                  source={{uri: 'https://img.icons8.com/fluency-systems-regular/96/000000/comments--v2.png'}}
-                  style={tw`h-4 w-4`}
-                />
-                <Text> Comment</Text>
-              </TouchableOpacity>
-            </View>
+            <Actions item={item} />
           </View>
         )}
         keyExtractor={item => item.docId}

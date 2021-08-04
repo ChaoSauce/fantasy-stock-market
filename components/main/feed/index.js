@@ -40,6 +40,8 @@ export default function Feed({ navigation }) {
       text: status,
       timeStamp: (new Date()).getTime(),
       userId: user.uid,
+      likes: [],
+      comments: []
     });
 
     setStatus('');
