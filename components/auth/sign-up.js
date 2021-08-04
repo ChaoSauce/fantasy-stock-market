@@ -24,7 +24,7 @@ export default function SignUp({ navigation }) {
           displayName: username.trimEnd().toLowerCase()
         });
 
-        await firebase.firestore().collection('users').add({
+        await firebase.firestore().collection('users').doc(createdUserResult.user.uid).set({
           userId: createdUserResult.user.uid,
           username: username.trimEnd().toLowerCase(),
           fullName: fullName.trimEnd(),
