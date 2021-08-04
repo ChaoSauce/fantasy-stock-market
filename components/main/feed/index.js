@@ -44,6 +44,7 @@ export default function Feed({ navigation }) {
 
     setStatus('');
     setPostsCount((count) => count + 1);
+    Keyboard.dismiss();
   }
   
   return (

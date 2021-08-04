@@ -69,7 +69,7 @@ export default function Posts({ posts }) {
                 </View>
               </View>
             </View>
-            <View style={tw`flex pl-16 pr-2 pb-3 border-b border-gray-300`}>
+            <View style={tw`flex pl-16 pr-2 pb-2 pt-1 border-b border-gray-300`}>
               <Text>{item.text}</Text>
             </View>
             <View style={tw`flex-row items-center p-2`}>

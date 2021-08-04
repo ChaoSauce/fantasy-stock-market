@@ -97,10 +97,7 @@ export default function Profile() {
       </View>
 
       <View style={tw`flex-row justify-center w-full border-b border-gray-300 px-10 pt-1 pb-4`}>
-        <View style={tw`flex items-center justify-center`}>
-          <Text>{currentUser?.posts.length || 0} posts</Text>
-        </View>
-        <View style={tw`flex items-center justify-center mx-4`}>
+        <View style={tw`flex items-center justify-center mr-4`}>
           <Text>{currentUser?.followers.length || 0} followers</Text>
         </View>
         <View style={tw`flex items-center justify-center`}>
@@ -109,7 +106,7 @@ export default function Profile() {
       </View>
 
       {currentUser && currentUser.bio !== '' && (
-        <View style={tw`p-3 w-full border-b border-gray-300 items-center`}>
+        <View style={tw`p-3 w-full border-b border-gray-300`}>
           <Text>this is a test bio taking up space</Text>
         </View>
       )}
