@@ -21,6 +21,8 @@ export default function Actions({ item }) {
   
     await firebase
       .firestore()
+      .collection('users')
+      .doc(firebase.auth().currentUser.uid)
       .collection('posts')
       .doc(item.docId)
       .update({
@@ -45,14 +47,14 @@ export default function Actions({ item }) {
       <View style={tw`flex-row items-center p-2`}>
         <TouchableOpacity style={tw`flex-row items-center`} onPress={handleToggleLiked}>
           <Image
-            source={{uri: toggleLiked ? 'https://img.icons8.com/material-sharp/96/000000/facebook-like--v1.png' : 'https://img.icons8.com/material-outlined/96/000000/facebook-like--v1.png', cache: 'only-if-cached'}}
+            source={{uri: toggleLiked ? 'https://img.icons8.com/material-sharp/96/000000/facebook-like--v1.png' : 'https://img.icons8.com/material-outlined/96/000000/facebook-like--v1.png'}}
             style={tw`h-4 w-4`}
           />
           <Text style={tw`mr-3`}> Like</Text>
         </TouchableOpacity>
         <TouchableOpacity style={tw`flex-row items-center`} onPress={() => alert('Show comments here...')}>
           <Image
-            source={{uri: 'https://img.icons8.com/fluency-systems-regular/96/000000/comments--v2.png', cache: 'only-if-cached'}}
+            source={{uri: 'https://img.icons8.com/fluency-systems-regular/96/000000/comments--v2.png'}}
             style={tw`h-4 w-4`}
           />
           <Text> Comment</Text>

@@ -1,4 +1,4 @@
-import { firebase, FieldValue } from '../lib/firebase';
+import { firebase, FieldValue, FieldPath } from '../lib/firebase';
 
 export async function doesUsernameExist(username) {
   const result = await firebase
@@ -14,13 +14,10 @@ export async function getUserByUserId(userId) {
   const result = await firebase
     .firestore()
     .collection('users')
-    .where('userId', '==', userId)
+    .doc(userId)
     .get();
 
-  return result.docs.map((item) => ({
-    ...item.data(),
-    docId: item.id
-  }));
+  return {...result.data(), docId: userId};
 }
 
 export async function getLeagues() {
@@ -35,30 +32,41 @@ export async function getLeagues() {
   }));
 }
 
-export async function getUserPosts(userId) {
+export async function getUserPosts(userData, userId) {
   const result = await firebase
     .firestore()
+    .collection('users')
+    .doc(userId)
     .collection('posts')
-    .where('userId', '==', userId)
     .get();
+
+
 
   return result.docs.map((item) => ({
     ...item.data(),
-    docId: item.id
+    docId: item.id,
+    fullName: userData.fullName,
+    username: userData.username,
+    profileImage: userData.profileImage
   }));
 }
 
 export async function getFollowingPosts(following) {
+  let posts = [];
+
   const result = await firebase
     .firestore()
-    .collection('posts')
-    .where('userId', 'in', following)
+    .collection('users')
+    .where(FieldPath.documentId(), 'in', following)
     .get();
 
-  return result.docs.map((item) => ({
-    ...item.data(),
-    docId: item.id
-  }));
+  for (let i = 0; i < result.docs.length; i++) {
+    const userPosts = await getUserPosts(result.docs[i].data(), result.docs[i].id);
+
+    posts = [...posts, ...userPosts];
+  }
+
+  return posts;
 }
 
 export async function getUsersBySearchText(startcode, endcode) {

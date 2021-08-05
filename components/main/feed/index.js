@@ -18,12 +18,13 @@ export default function Feed({ navigation }) {
 
   useEffect(() => {
     async function getCurrentUserInfo() {
-      const [result] = await getUserByUserId(user.uid);
+      const result = await getUserByUserId(user.uid);
       setCurrentUser(result);
     }
     
     async function getUserPosts() {
-      const results = await getFollowingPosts([...currentUser.following, currentUser.userId]);
+      const results = await getFollowingPosts([...currentUser.following, currentUser.docId]);
+
       setPosts(results.sort((a, b) => b.timeStamp - a.timeStamp));
       setPostsCount(results.length);
     };
@@ -63,7 +64,7 @@ export default function Feed({ navigation }) {
             >
               <Image
                 style={tw`h-7 w-7`}
-                source={{uri: 'https://img.icons8.com/ios/500/000000/search--v1.png', cache: 'only-if-cached'}}
+                source={{uri: 'https://img.icons8.com/ios/500/000000/search--v1.png'}}
               />
             </TouchableOpacity>
           </View>

@@ -46,7 +46,7 @@ export default function LookUpUser({ navigation }) {
               onPress={() => navigation.navigate('Main')}
             >
               <Image
-                source={{uri: 'https://img.icons8.com/ios-glyphs/90/000000/back.png', cache: 'only-if-cached'}}
+                source={{uri: 'https://img.icons8.com/ios-glyphs/90/000000/back.png'}}
                 style={tw`h-7 w-7`}
               />
             </TouchableOpacity>

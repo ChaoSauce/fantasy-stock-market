@@ -14,21 +14,21 @@ export default function Profile() {
 
   useEffect(() => {
     async function getCurrentUser() {
-      const [result] = await getUserByUserId(user.uid);
+      const result = await getUserByUserId(user.uid);
       setCurrentUser(result);
     }
 
     async function fetchUserPosts() {
-      const results = await getUserPosts(user.uid);
+      const results = await getUserPosts(currentUser, currentUser.docId);
       setPosts(results.sort((a, b) => b.timeStamp - a.timeStamp));
     };
 
     getCurrentUser();
 
-    if (user) {
+    if (currentUser) {
       fetchUserPosts();
     }
-  }, [user])
+  }, [currentUser])
 
   const createNoPermissionAlert = () =>
     Alert.alert(
@@ -44,8 +44,7 @@ export default function Profile() {
     const galleryStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (galleryStatus.status !== 'granted') {
-      alert(galleryStatus.status);
-      // createNoPermissionAlert();
+      createNoPermissionAlert();
       return;
     }
 
@@ -76,15 +75,15 @@ export default function Profile() {
       >
         <Image
           style={tw`h-24 w-24 rounded-full`}
-          source={{uri: currentUser?.profileImage, cache: 'only-if-cached'}}
+          source={{uri: currentUser?.profileImage}}
         />
       </TouchableOpacity>
 
       <View style={tw`flex justify-center w-full items-center`}>
         <Text style={tw`text-base mt-1`}>@{currentUser?.username}</Text>
-        <View style={tw`flex-row justify-between w-3/5 m-1`}>
+        <View style={tw`flex-row justify-between m-1`}>
           <TouchableOpacity
-            style={tw`flex bg-red-500 py-1 px-5 items-center justify-center rounded`}
+            style={tw`flex bg-red-500 py-1 px-5 mr-4 items-center justify-center rounded`}
           >
             <Text style={tw`font-bold text-white text-sm`}>Follow</Text>
           </TouchableOpacity>
@@ -96,8 +95,8 @@ export default function Profile() {
         </View>
       </View>
 
-      <View style={tw`flex-row justify-between w-3/4 border-b border-gray-300 px-10 pt-1 pb-2`}>
-        <View style={tw`flex items-center justify-center`}>
+      <View style={tw`flex-row justify-center w-full border-b border-gray-300 px-10 pt-1 pb-2`}>
+        <View style={tw`flex items-center justify-center mr-4`}>
           <Text>{currentUser?.followers.length || 0} followers</Text>
         </View>
         <View style={tw`flex items-center justify-center`}>
