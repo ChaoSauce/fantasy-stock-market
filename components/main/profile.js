@@ -28,7 +28,7 @@ export default function Profile() {
     if (currentUser) {
       fetchUserPosts();
     }
-  }, [currentUser])
+  }, [user])
 
   const createNoPermissionAlert = () =>
     Alert.alert(

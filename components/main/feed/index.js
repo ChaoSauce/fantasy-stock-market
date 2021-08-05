@@ -10,7 +10,6 @@ import Posts from './posts';
 export default function Feed({ navigation }) {
   const [status, setStatus] = useState('');
   const [posts, setPosts] = useState([]);
-  const [postsCount, setPostsCount] = useState(0);
   const { user } = useContext(LoggedInUserContext);
   const { firebase } = useContext(FirebaseContext);
   const [currentUser, setCurrentUser] = useState(null);
@@ -34,19 +33,20 @@ export default function Feed({ navigation }) {
     } else {
       getUserPosts();
     }
-  }, [currentUser, postsCount]);
+  }, [user, posts]);
 
   const handleSubmit = async () => {
-    await firebase.firestore().collection('posts').add({
+    const post = {
       text: status,
       timeStamp: (new Date()).getTime(),
-      userId: user.uid,
       likes: [],
       comments: []
-    });
+    };
+
+    await firebase.firestore().collection('posts').add(post);
 
     setStatus('');
-    setPostsCount((count) => count + 1);
+    setPosts([...posts, post])
     Keyboard.dismiss();
   }
   
