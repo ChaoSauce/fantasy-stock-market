@@ -66,7 +66,7 @@ export default function Profile() {
 
   return (
     <SafeAreaView edges={['top', 'left', 'right']} style={tw`container flex-1 mx-auto max-w-screen-xl items-center bg-gray-100 border border-gray-300`}>
-      <View style={tw`flex items-center mb-2 mt-5`}>
+      <View style={tw`flex items-center`}>
         <Text style={tw`text-2xl font-bold`}>{currentUser?.fullName}</Text>
       </View>
 
@@ -76,15 +76,15 @@ export default function Profile() {
       >
         <Image
           style={tw`h-24 w-24 rounded-full`}
-          source={{uri: currentUser?.profileImage}}
+          source={{uri: currentUser?.profileImage, cache: 'only-if-cached'}}
         />
       </TouchableOpacity>
 
       <View style={tw`flex justify-center w-full items-center`}>
-        <Text style={tw`text-base mt-2`}>@{currentUser?.username}</Text>
-        <View style={tw`flex-row justify-between m-3`}>
+        <Text style={tw`text-base mt-1`}>@{currentUser?.username}</Text>
+        <View style={tw`flex-row justify-between w-3/5 m-1`}>
           <TouchableOpacity
-            style={tw`flex bg-red-500 py-1 px-5 mr-4 items-center justify-center rounded`}
+            style={tw`flex bg-red-500 py-1 px-5 items-center justify-center rounded`}
           >
             <Text style={tw`font-bold text-white text-sm`}>Follow</Text>
           </TouchableOpacity>
@@ -96,8 +96,8 @@ export default function Profile() {
         </View>
       </View>
 
-      <View style={tw`flex-row justify-center w-full border-b border-gray-300 px-10 pt-1 pb-4`}>
-        <View style={tw`flex items-center justify-center mr-4`}>
+      <View style={tw`flex-row justify-between w-3/4 border-b border-gray-300 px-10 pt-1 pb-2`}>
+        <View style={tw`flex items-center justify-center`}>
           <Text>{currentUser?.followers.length || 0} followers</Text>
         </View>
         <View style={tw`flex items-center justify-center`}>
@@ -106,7 +106,7 @@ export default function Profile() {
       </View>
 
       {currentUser && currentUser.bio !== '' && (
-        <View style={tw`p-3 w-full border-b border-gray-300`}>
+        <View style={tw`p-2 w-full border-b border-gray-300`}>
           <Text>this is a test bio taking up space</Text>
         </View>
       )}

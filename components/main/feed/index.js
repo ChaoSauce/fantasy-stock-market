@@ -63,7 +63,7 @@ export default function Feed({ navigation }) {
             >
               <Image
                 style={tw`h-7 w-7`}
-                source={{uri: 'https://img.icons8.com/ios/500/000000/search--v1.png'}}
+                source={{uri: 'https://img.icons8.com/ios/500/000000/search--v1.png', cache: 'only-if-cached'}}
               />
             </TouchableOpacity>
           </View>

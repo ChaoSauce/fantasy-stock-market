@@ -16,7 +16,7 @@ export default function List({ leagues }) {
               <View style={tw`items-center mr-2`}>
                 <Image
                   style={tw`h-5 w-5`}
-                  source={{uri: 'https://img.icons8.com/office/480/000000/clock--v1.png'}}
+                  source={{uri: 'https://img.icons8.com/office/480/000000/clock--v1.png', cache: 'only-if-cached'}}
                 />
               </View>
               <Text style={tw`text-center text-sm`}>{format(item.draftTime, 'iii, MMM do @ h:mm a')}</Text>
@@ -28,7 +28,7 @@ export default function List({ leagues }) {
                     <View style={tw`items-center mr-2`}>
                       <Image
                         style={tw`h-5 w-5`}
-                        source={{uri: 'https://img.icons8.com/office/480/000000/test-account.png'}}
+                        source={{uri: 'https://img.icons8.com/office/480/000000/test-account.png', cache: 'only-if-cached'}}
                       />
                     </View>
                     <Text style={tw`text-center text-sm`}>{item.numPlayers}/{item.maxNumPlayers}</Text>
@@ -37,7 +37,7 @@ export default function List({ leagues }) {
                     <View style={tw`items-center mr-2`}>
                       <Image
                         style={tw`h-5 w-5`}
-                        source={{uri: 'https://img.icons8.com/office/80/000000/us-dollar--v1.png'}}
+                        source={{uri: 'https://img.icons8.com/office/80/000000/us-dollar--v1.png', cache: 'only-if-cached'}}
                       />
                     </View>
                     <Text style={tw`text-center text-sm`}>{item.gemPerPlayer}</Text>
@@ -48,7 +48,7 @@ export default function List({ leagues }) {
                     <View style={tw`items-center mr-1`}>
                       <Image
                         style={tw`h-5 w-5`}
-                        source={{uri: 'https://img.icons8.com/windows/96/000000/wall-clock.png'}}
+                        source={{uri: 'https://img.icons8.com/windows/96/000000/wall-clock.png', cache: 'only-if-cached'}}
                       />
                     </View>
                     <Text style={tw`text-center text-sm`}>{item.minPerPick} Min Per Pick</Text>
@@ -57,7 +57,7 @@ export default function List({ leagues }) {
                     <View style={tw`items-center mr-1`}>
                       <Image
                         style={tw`h-5 w-5`}
-                        source={{uri: 'https://img.icons8.com/fluency-systems-regular/96/000000/repeat.png'}}
+                        source={{uri: 'https://img.icons8.com/fluency-systems-regular/96/000000/repeat.png', cache: 'only-if-cached'}}
                       />
                     </View>
                     <Text style={tw`text-center text-sm`}>{item.rounds} rounds</Text>

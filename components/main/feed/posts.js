@@ -57,7 +57,7 @@ export default function Posts({ posts }) {
               <View style={tw`flex items-center mr-2`}>
                 <Image
                   style={tw`h-12 w-12 rounded-full`}
-                  source={{uri: item.profileImage}}
+                  source={{uri: item.profileImage, cache: 'only-if-cached'}}
                 />
               </View>
               <View style={tw`flex-col justify-center`}>

@@ -47,7 +47,7 @@ export default function Leagues({ navigation }) {
         <View style={tw`flex-row border border-gray-400 px-3 py-1 rounded`}>
           <Image
             style={tw`h-6 w-6 mr-1`}
-            source={{uri: 'https://img.icons8.com/office/80/000000/us-dollar--v1.png'}}
+            source={{uri: 'https://img.icons8.com/office/80/000000/us-dollar--v1.png', cache: 'only-if-cached'}}
           />
           <Text style={tw`text-base`}>{currentUser?.gem}</Text>
         </View>
